@@ -1,11 +1,39 @@
 import "./styles.css";
-import React from 'react'
- const App = () => {
+import React from "react";
+import { incNumber, decNumber } from "./actions/index";
+import { useSelector, useDispatch } from "react-redux";
+
+const App = () => {
+  const myState = useSelector((state) => state.changeThenumber);
+  const dispatch = useDispatch();
   return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
+    <>
+      <div className="Amm">
+        <h1>Calculator</h1>
+        <div className="quantity">
+          <h1
+            className="minus"
+            title="decrement"
+            onClick={() => dispatch(decNumber)}
+          >
+            <span> - </span>{" "}
+          </h1>
+          <input
+            name="quantity"
+            type="text"
+            className="quantity_input"
+            value={myState}
+          />
+          <h1
+            className="plus"
+            title="increment"
+            onClick={() => dispatch(incNumber)}
+          >
+            <span> + </span>{" "}
+          </h1>
+        </div>{" "}
+      </div>
+    </>
   );
-}
-export default App
+};
+export default App;
